@@ -1,0 +1,21 @@
+{
+  "name": "onboarding-buddy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dev-musty/Onboarding-Buddy.git"
+  },
+  "keywords": [],
+  "author": "Mustapha Ridwan",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Dev-musty/Onboarding-Buddy/issues"
+  },
+  "homepage": "https://github.com/Dev-musty/Onboarding-Buddy#readme"
+}
