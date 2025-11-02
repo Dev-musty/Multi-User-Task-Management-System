@@ -2,11 +2,12 @@ import { Agent } from "@mastra/core/agent";
 import { reminderTool } from "../tools/reminderTool";
 import { getTasks } from "../tools/getTaskTool";
 import { completeTask } from "../tools/completeTaskTool";
+import { getAssignedTasks } from "../tools/getAssignedTaskTool";
 import { LibSQLStore } from "@mastra/libsql";
 import { Memory } from "@mastra/memory";
 
-export const personalAgent = new Agent({
-  name: "Personal Agent",
+export const taskManagementSystem = new Agent({
+  name: "Task Management System",
   instructions: `
     You are a team task management assistant. You help PMs assign tasks and help team members track their work.
 
@@ -119,6 +120,7 @@ export const personalAgent = new Agent({
     reminderTool,
     getTasks,
     completeTask,
+    getAssignedTasks
   },
   memory: new Memory({
     storage: new LibSQLStore({

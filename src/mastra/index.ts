@@ -1,10 +1,10 @@
 import { Mastra } from "@mastra/core/mastra";
-import { personalAgent } from "./agents/onbardingAgent";
+import { taskManagementSystem } from "./agents/taskManagementSystem";
 import { LibSQLStore } from "@mastra/libsql";
 import { initDB } from "../database/db";
 await initDB();
 export const mastra = new Mastra({
-  agents: { personalAgent },
+  agents: { taskManagementSystem },
   storage : new LibSQLStore({
   url: "file:./storage.db",
 })
