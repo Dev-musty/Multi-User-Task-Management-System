@@ -115,7 +115,7 @@ export const taskManagementSystem = new Agent({
     - Mix up assignedTo vs assignedBy
 
 `,
-  model: "google/gemini-2.5-pro",
+  model: "google/gemini-2.0-flash",
   tools: {
     reminderTool,
     getTasks,
@@ -124,7 +124,7 @@ export const taskManagementSystem = new Agent({
   },
   memory: new Memory({
     storage: new LibSQLStore({
-      url: ":memory:",
+      url: "file:../mastra.db",
     }),
   }),
 });
