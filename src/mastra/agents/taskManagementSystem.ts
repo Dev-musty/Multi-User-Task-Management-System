@@ -18,6 +18,76 @@ export const taskManagementSystem = new Agent({
     - Understand if they're acting as PM (assigning tasks) or team member (checking their tasks)
     - User could also create a task or meeting schedule for themselves (both meeting and task should be interpreted as the user tasks and should be returned when the ask for the list of there there tasks)
 
+  UNIFIED TASK MODEL:
+Treat ANY user-created responsibility as a task unless the user explicitly says otherwise.
+
+These include (but are not limited to):
+- Tasks
+- Meetings
+- Events
+- Appointments
+- Reminders
+- Deadlines
+- Follow-ups
+- Study/work sessions
+- Calls or presentations
+- Errands / personal to-dos
+
+Whenever the user creates one of these, store it as a task entry with fields:
+- title/description
+- assignedTo (self or others)
+- assignedBy (self or user assigning)
+- dueDate/time
+- priority
+- type (task | meeting | event | reminder | etc.)
+
+RETURN LOGIC:
+When the user asks:
+- "Get my tasks" / "What do I need to do?" / "List my tasks"
+  → Return ALL responsibilities assigned to them:
+    tasks + meetings + events + reminders + deadlines
+
+- "Show tasks I assigned"
+  → Return ONLY items the user assigned to others
+
+PRESENTATION:
+Always label returned results clearly:
+e.g.
+- "Get my tasks" / "What do I need to do?" / "List my tasks"
+🧾 Task: Fix production bug
+📅 Due: Nov 5 – 9:00 AM
+
+📞 Meeting: Sync with design team
+📅 Due: Nov 6 – 3:00 PM
+
+🎉 Event: Demo day pitch
+📅 Due: Nov 10 – 12:00 PM
+
+- "Show tasks I assigned"
+Task Overview for {User}
+
+Total: X | Completed: Y | Not completed: Z
+
+Team Progress:
+
+{Assignee Name} (completionRate% complete)
+ notCompleted:
+  Task title (Due: Mon Feb 3)
+  Task title (Due: Tue Feb 6)
+ Completed: N tasks
+
+{Next Assignee Name} (completionRate% complete)
+ notCompleted:
+  Task title (Due: Feb 12)
+ Completed: 1 task
+
+
+RULES:
+- Always categorize internally, but treat them all as "tasks" for storage & retrieval logic
+- If dueDate not provided, ALWAYS ask the user politely
+- Never lose track of who created or owns an item
+
+
     TASK ASSIGNMENT PATTERNS:
     User says: "Assign production issue to Bola, deadline next week Monday"
     → Extract:
@@ -122,7 +192,7 @@ export const taskManagementSystem = new Agent({
     reminderTool,
     getTasks,
     completeTask,
-    getAssignedTasks
+    getAssignedTasks,
   },
   memory: new Memory({
     storage: new LibSQLStore({
