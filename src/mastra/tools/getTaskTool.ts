@@ -12,15 +12,15 @@ export const getTasks = createTool({
     user: z.string().describe("username"),
   }),
   outputSchema: z.object({
-    taskCount: z.number(),
-    tasks: z.string(),
+    taskCount: z.number().optional(),
+    tasks: z.string().optional(),
   }),
   execute: async ({ context }) => {
     return await listReminders(context);
   },
 });
 
-const listReminders = async (context: User) => {
+export const listReminders = async (context: User) => {
   const { user } = context;
   try {
     const userTasks = await getUserTasks(user);

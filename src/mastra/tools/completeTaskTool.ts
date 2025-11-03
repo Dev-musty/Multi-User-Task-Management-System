@@ -20,7 +20,7 @@ export const completeTask = createTool({
     return await markTaskComplete(context);
   },
 });
-const markTaskComplete = async (context: User) => {
+export const markTaskComplete = async (context: User) => {
   const { user } = context;
   try {
     // Get user's tasks

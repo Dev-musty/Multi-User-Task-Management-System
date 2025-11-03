@@ -23,7 +23,7 @@ export const getAssignedTasks = createTool({
   },
 });
 
-const assignedTask = async (context: User) => {
+export const assignedTask = async (context: User) => {
   const { assignedBy } = context;
   try {
     const assigner = await getTasksByAssigner(assignedBy);
@@ -100,7 +100,7 @@ const assignedTask = async (context: User) => {
     return {
       totalTasks: 0,
       completedTasks: 0,
-      pendingTasks: 0,
+      notCompletedTasks: 0,
       overview: `Error fetching tasks: ${error}`,
     };
   }

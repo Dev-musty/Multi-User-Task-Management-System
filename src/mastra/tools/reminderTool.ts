@@ -2,6 +2,13 @@ import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
 import { addTask, Task } from "../../database/db";
 
+export interface ReminderInput {
+  assignedBy: string;
+  assignedTo: string;
+  task: string;
+  dueDate: string;
+  priority: "low" | "medium" | "high";
+}
 export const reminderTool = createTool({
   id: "reminder-tool",
   description: "Creates a task/reminder and assigns it to a team member",
@@ -15,14 +22,14 @@ export const reminderTool = createTool({
   outputSchema: z.object({
     success: z.boolean(),
     message: z.string(),
-    taskId: z.string(),
+    taskId: z.string().optional(),
   }),
   execute: async ({ context }) => {
     return await createReminder(context);
   },
 });
 
-const createReminder = async (context:Task) => {
+export const createReminder = async (context:ReminderInput) => {
   const { assignedBy, assignedTo, task, dueDate, priority } = context;
   try {
     const due = new Date(dueDate);

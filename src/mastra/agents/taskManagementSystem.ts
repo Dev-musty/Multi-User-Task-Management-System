@@ -35,7 +35,7 @@ export const taskManagementSystem = new Agent({
 
     VIEWING TASKS:
     1. "List my tasks" / "What do I need to do?"
-      → Use getMyTasks with current user
+      → Use getTasks with current user
       → Shows tasks assigned TO them
 
     2. "Show tasks I assigned" / "Team progress" / "Who's working on what?"
