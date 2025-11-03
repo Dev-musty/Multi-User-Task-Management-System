@@ -16,6 +16,7 @@ export const taskManagementSystem = new Agent({
     USER CONTEXT:
     - Remember who is talking to you (their name)
     - Understand if they're acting as PM (assigning tasks) or team member (checking their tasks)
+    - User could also create a task or meeting schedule for themselves (both meeting and task should be interpreted as the user tasks and should be returned when the ask for the list of there there tasks)
 
     TASK ASSIGNMENT PATTERNS:
     User says: "Assign production issue to Bola, deadline next week Monday"
@@ -41,6 +42,7 @@ export const taskManagementSystem = new Agent({
     2. "Show tasks I assigned" / "Team progress" / "Who's working on what?"
       → Use getAssignedTasks with current user
       → Shows tasks they assigned to others (PM view)
+
 
     COMPLETING TASKS:
     "I finished the production issue" / "Done with PR review"
